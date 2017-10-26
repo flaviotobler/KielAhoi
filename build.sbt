@@ -9,3 +9,4 @@ scalaVersion := "2.12.2"
 testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 
 libraryDependencies += guice
+libraryDependencies += "org.webjars" % "bootstrap" % "4.0.0-beta-1"
