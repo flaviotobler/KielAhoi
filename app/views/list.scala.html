@@ -1,0 +1,24 @@
+@(ports: List[Port])
+
+@layout {
+
+  <h1>Ports</h1>
+
+  <table>
+    <thead>
+      <tr><th>id</th><th>name</th><th>lon</th><th>lat</th><th>height</th><th>land</th><th>town</th><th>ok</th>
+    </thead>
+    <tbody>
+    @for(p <- ports) {
+      @if(p.ok) {
+        <tr class="gt"><td>@p.id</td><td>@p.name</td><td>@p.lon</td><td>@p.lat</td><td>@p.height</td><td>@p.land</td><td>@p.town</td><td>@p.ok</td></tr>
+      } else {
+        <tr class="rt"><td>@p.id</td><td>@p.name</td><td>@p.lon</td><td>@p.lat</td><td>@p.height</td><td>@p.land</td><td>@p.town</td><td>@p.ok</td></tr>
+      }
+    }
+    </tbody>
+  </table>
+
+
+
+}

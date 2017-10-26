@@ -1,0 +1,61 @@
+
+#eingabebox {
+    background-color: dimgrey;
+    width: 155px;
+    height: 75px;
+    align-self: flex-end;
+    border-style: outset;
+    border-width: 5px;
+    padding: 5px;
+}
+#titelbox {
+    width: 70%;
+}
+#firstline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+h2{
+    font-size: 20px;
+    font-style: italic;
+}
+
+#mapbox{
+    width: 98%;
+    height: 0px;
+    margin: 10px
+}
+
+@media all and (min-width: 400px){
+    #mapbox{
+        height:200px;
+    }
+}
+
+@media all and (min-width: 600px){
+    #mapbox{
+        height:300px;
+    }
+}
+
+@media all and (min-width: 800px){
+    #mapbox{
+        height:400px;
+    }
+}
+
+@media all and (min-width: 1000px){
+    #mapbox{
+        height:500px;
+    }
+}
+
+
+
+
+
+
+
