@@ -1,4 +1,4 @@
-name := """play-java-forms-example"""
+name := """KielAhoi"""
 
 version := "2.6.x"
 
