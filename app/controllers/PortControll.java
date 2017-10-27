@@ -36,6 +36,13 @@ public class PortControll extends Controller {
         return ok(views.html.list.render(ports));
     }
 
+    public Result map() {return ok(views.html.map.render(ports));}
+
+
+
+
+
+
     public Result add() {
         ports.add(new Port(1, "KreuzlingenYachthafen", 47.654409, 9.183276, 450.0, "CH", "Kreuzlingen"));
         return ok();

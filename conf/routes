@@ -7,7 +7,7 @@ GET     /                           controllers.PortControll.index
 
 # Ports
 GET     /portlist                   controllers.PortControll.list
-
+GET     /portmap                    controllers.PortControll.map
 
 
 GET     /add                        controllers.PortControll.add
