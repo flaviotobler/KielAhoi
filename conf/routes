@@ -8,10 +8,10 @@ GET     /                           controllers.PortControll.layout
 # Ports
 GET     /portlist                   controllers.PortControll.list
 GET     /portmap                    controllers.PortControll.map
+GET     /ports                      controllers.PortControll.ports
 
 
 GET     /add                        controllers.PortControll.add
-GET     /portlist/:height           controllers.PortControll.heightControll(height: Double)
 GET     /layout                     controllers.PortControll.layout
 
 

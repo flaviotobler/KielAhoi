@@ -15,7 +15,6 @@ public class Port {
     public Double height;
     public String land;
     public String town;
-    public boolean ok = true;
 
     public Port(int id, String name, Double lon, Double lat, Double height, String land, String town){
         this.id = id;

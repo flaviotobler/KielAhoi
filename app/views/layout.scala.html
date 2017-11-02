@@ -42,10 +42,10 @@
             <p>Hier wird der Konstanzer Pegel eingefügt mit zusazzinformationen.</p>
           </div>
         </div>
-        <form>
+        <form onsubmit="event.preventDefault(), tiefgangControll()">
           <lable for="tiefgangInput">Tiefgang:</lable>
-          <input type="number" class="form-control" id="tiefgangInput" placeholder="250cm">
-          <button type="submit" class="btn btn-primary" id="tiefgangEingabe" onclick="sendTiefgang()">Bestätigen</button>
+          <input type="number" step="any" class="form-control" id="tiefgangInput" placeholder="2.5m">
+          <button type="submit" class="btn btn-primary" id="tiefgangEingabe">Bestätigen</button>
         </form>
       </div>
       <div id="content" class="container">
@@ -59,6 +59,7 @@
     <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.js")"></script>
     <script src="@routes.Assets.at("lib/leaflet/leaflet.js")"></script>
     <script src="@routes.Assets.at("javascripts/bodenseeMap.js")"></script>
+    <script src="@routes.Assets.at("javascripts/bodenseeListe.js")"></script>
     <script src="@routes.Assets.at("javascripts/bodenseeLayout.js")"></script>
 
   </body>
