@@ -64,7 +64,7 @@ public class PortControll extends Controller {
     }
 
     public Result layout() {
-        return ok(views.html.layout.render(null));
+        return ok(views.html.layout.render());
     }
 
 

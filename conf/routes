@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.PortControll.map
+GET     /                           controllers.PortControll.layout
 
 # Ports
 GET     /portlist                   controllers.PortControll.list
