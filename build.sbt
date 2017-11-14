@@ -16,13 +16,9 @@ libraryDependencies += "org.webjars.bower" % "leaflet" % "1.2.0"
 
 
 // lb: Datenbank
-//libraryDependencies += jdbc
-//libraryDependencies += "postgresql" % "postgresql" % "9.4-1206-jdbc42"
+libraryDependencies += jdbc
+libraryDependencies += "org.postgresql" % "postgresql" % "9.4-1201-jdbc41"
 
-
-//libraryDependencies += javaJpa.exclude("org.hibernate.javax.persistence", "hibernate-jpa-2.0-api")
-// alt: libraryDependencies += "org.hibernate" % "hibernate-entitymanager" % "4.3.4.Final"
-//libraryDependencies ++= Seq(javaJpa,"org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final") // replace by your jpa implementation
 
 // PlayKeys.externalizeResources := false // beim Deployen aktivieren
 
