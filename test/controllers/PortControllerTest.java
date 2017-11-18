@@ -18,7 +18,7 @@ import static play.test.Helpers.*;
  *
  * https://www.playframework.com/documentation/latest/JavaFunctionalTest
  */
-public class PortControllTest extends WithApplication {
+public class PortControllerTest extends WithApplication {
 
     @Override
     protected Application provideApplication() {

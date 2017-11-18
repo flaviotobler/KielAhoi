@@ -3,19 +3,31 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.PortControll.layout
+GET     /                           controllers.PortController.layout
+
+# lb: Home page
+GET     /                           controllers.PortController.index()
+POST    /port                     controllers.PortController.addPort()
+GET     /ports                    controllers.PortController.getPorts()
+
+
+
 
 # Ports
-GET     /portlist                   controllers.PortControll.list
-GET     /portmap                    controllers.PortControll.map
-GET     /ports                      controllers.PortControll.ports
+GET     /portlist                   controllers.PortController.list
+GET     /portmap                    controllers.PortController.map
+#GET     /ports                      controllers.PortController.ports
 
 
-GET     /add                        controllers.PortControll.add
-GET     /layout                     controllers.PortControll.layout
+GET     /add                        controllers.PortController.add
+GET     /layout                     controllers.PortController.layout
 
 
 
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+
+
+

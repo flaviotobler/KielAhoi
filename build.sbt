@@ -2,9 +2,9 @@ name := """KielAhoi"""
 
 version := "2.6.x"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava)
-
 scalaVersion := "2.12.2"
+
+lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
 testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 
@@ -16,8 +16,18 @@ libraryDependencies += "org.webjars.bower" % "leaflet" % "1.2.0"
 
 
 // lb: Datenbank
-libraryDependencies += jdbc
+libraryDependencies += javaJpa
+//libraryDependencies += "com.h2database" % "h2" % "1.4.194"
 libraryDependencies += "org.postgresql" % "postgresql" % "9.4-1201-jdbc41"
+libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.5.Final"
+
+
+
+
+
+
+
+
 
 
 // PlayKeys.externalizeResources := false // beim Deployen aktivieren

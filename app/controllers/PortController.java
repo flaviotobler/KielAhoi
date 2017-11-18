@@ -1,29 +1,63 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import models.Port;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import play.data.Form;
+import models.PortRepository;
+
 import play.data.FormFactory;
-import play.libs.Json;
-import play.mvc.*;
-import scala.util.parsing.json.JSON;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletionStage;
+import java.util.stream.Collectors;
 
-import static play.libs.Scala.asScala;
+import play.mvc.Controller;
+import play.mvc.Result;
+
+import play.libs.Json;
+import play.libs.concurrent.HttpExecutionContext;
+
+import static play.libs.Json.toJson;
+
 
 /**
- * An example of form processing.
  *
- * https://playframework.com/documentation/latest/JavaForms
+ *
+ *
  */
 @Singleton
-public class PortControll extends Controller {
+public class PortController extends Controller {
+
+
+    private final FormFactory formFactory;
+    private final PortRepository portRepository;
+    private final HttpExecutionContext ec;
+
+    @Inject
+    public PortController(FormFactory formFactory, PortRepository portRepository, HttpExecutionContext ec) {
+        this.formFactory = formFactory;
+        this.portRepository = portRepository;
+        this.ec = ec;
+    }
+
+
+    public CompletionStage<Result> getPorts() {
+        return portRepository.list().thenApplyAsync(
+                portStream -> ok(toJson(portStream.collect(Collectors.toList()))
+                ), ec.current());
+    }
+
+    public CompletionStage<Result> addPort() {
+        Port port = formFactory.form(Port.class).bindFromRequest().get();
+        return portRepository.add(port).thenApplyAsync(
+                p -> redirect(routes.PortController.index()
+                ), ec.current());
+    }
+
+
+
 
     //private final Form<WidgetData> form;
     private final List<Port> ports = new ArrayList<>();

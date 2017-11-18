@@ -1,5 +1,14 @@
 package models;
 
+import play.db.jpa.JPA;
+
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.function.Function;
+
+import com.sun.javafx.beans.IDProperty;
+
+
 /**
  * Presentation object used for displaying data in a template.
  *
@@ -7,7 +16,13 @@ package models;
  * which are used for reads, distinct from the form processing DTO,
  * which are used for writes.
  */
+
+@Entity
+@Table(name = "ports")
 public class Port {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     public int id;
     public String name;
     public Double lon;
