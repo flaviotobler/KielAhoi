@@ -14,7 +14,7 @@ GET     /ports                    controllers.PortController.getPorts()
 
 
 # Ports
-GET     /portlist                   controllers.PortController.list
+GET     /portlist                   controllers.PortController.list()
 GET     /portmap                    controllers.PortController.map
 #GET     /ports                      controllers.PortController.ports
 

@@ -45,7 +45,8 @@ public class PortController extends Controller {
 
     public CompletionStage<Result> getPorts() {
         return portRepository.list().thenApplyAsync(
-                portStream -> ok(toJson(portStream.collect(Collectors.toList()))
+                portStream -> ok(views.html.list.render(portStream.collect(Collectors.toList()))
+                //portStream -> ok(toJson(portStream.collect(Collectors.toList()))
                 ), ec.current());
     }
 
@@ -60,7 +61,7 @@ public class PortController extends Controller {
 
 
     //private final Form<WidgetData> form;
-    private final List<Port> ports = new ArrayList<>();
+    private final List<Port> portsTest = new ArrayList<>();
     private final Double heightkonstanz = 450.0;
     private final Double pegelkonstanz = 4.5;
 
@@ -70,20 +71,20 @@ public class PortController extends Controller {
     }
 
     public Result list() {
-        return ok(views.html.list.render(ports));
+        return ok(views.html.list.render(portsTest));
     }
 
-    public Result map() { return ok(views.html.map.render(ports));}
+    public Result map() { return ok(views.html.map.render(portsTest));}
 
-    public Result ports(){ return ok(Json.toJson(ports));}
+    public Result ports(){ return ok(Json.toJson(portsTest));}
 
 
 
 
     public Result add() {
-        ports.add(new Port(1, "KreuzlingenYachthafen", 47.654409, 9.183276, pegelkonstanz + heightkonstanz - 450.0, "CH", "Kreuzlingen"));
-        ports.add(new Port(2, "Bregenz", 47.5024, 9.7362, pegelkonstanz + heightkonstanz - 453.0, "AU", "Bregenz"));
-        ports.add(new Port(3, "Romanshorn", 47.5667, 9.3833, pegelkonstanz + heightkonstanz - 447.0, "CH", "Romanshorn"));
+        portsTest.add(new Port(1, "KreuzlingenYachthafen", 47.654409, 9.183276, pegelkonstanz + heightkonstanz - 450.0, "CH", "Kreuzlingen"));
+        portsTest.add(new Port(2, "Bregenz", 47.5024, 9.7362, pegelkonstanz + heightkonstanz - 453.0, "AU", "Bregenz"));
+        portsTest.add(new Port(3, "Romanshorn", 47.5667, 9.3833, pegelkonstanz + heightkonstanz - 447.0, "CH", "Romanshorn"));
         return ok();
     }
 

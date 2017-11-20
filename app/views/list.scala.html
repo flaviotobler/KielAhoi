@@ -1,15 +1,14 @@
 @(ports: List[Port])
 
-  <h1>Ports</h1>
+<h1>Ports</h1>
 
-  <table>
-    <thead>
-      <tr><th>id</th><th>name</th><th>lon</th><th>lat</th><th>height</th><th>land</th><th>town</th>
-    </thead>
-    <tbody>
+<table>
+  <thead>
+    <tr><th>id</th><th>Bezeichnung</th><th>lon</th><th>lat</th><th>MüM</th><th>Land</th><th>Ortschaft</th>
+  </thead>
+  <tbody>
     @for(p <- ports) {
-        <tr id="@p.id"><td>@p.id</td><td>@p.name</td><td>@p.lon</td><td>@p.lat</td><td>@p.height</td><td>@p.land</td><td>@p.town</td></tr>
+      <tr id="@p.getId()"><td>@p.getId()</td><td>@p.getDescription()</td><td>@p.getLon()</td><td>@p.getLat()</td><td>@p.getHeight()</td><td>@p.getCountry()</td><td>@p.getCity()</td></tr>
     }
-    </tbody>
-  </table>
-
+  </tbody>
+</table>

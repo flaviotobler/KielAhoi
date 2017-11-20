@@ -17,18 +17,8 @@ libraryDependencies += "org.webjars.bower" % "leaflet" % "1.2.0"
 
 // lb: Datenbank
 libraryDependencies += javaJpa
-//libraryDependencies += "com.h2database" % "h2" % "1.4.194"
 libraryDependencies += "org.postgresql" % "postgresql" % "9.4-1201-jdbc41"
-libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.5.Final"
-
-
-
-
-
-
-
-
-
+libraryDependencies += "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final"
 
 // PlayKeys.externalizeResources := false // beim Deployen aktivieren
 

@@ -46,6 +46,7 @@ public class JPAPortRepository implements PortRepository {
 
     private Stream<Port> list(EntityManager em) {
         List<Port> ports = em.createQuery("select p from Port p", Port.class).getResultList();
+
         return ports.stream();
     }
 }

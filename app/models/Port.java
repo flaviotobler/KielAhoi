@@ -23,21 +23,80 @@ public class Port {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public int id;
-    public String name;
-    public Double lon;
-    public Double lat;
-    public Double height;
-    public String land;
-    public String town;
+    private int id;
+    private String description;
+    private Double lon;
+    private Double lat;
+    private Double height;
+    private String country;
+    private String city;
 
-    public Port(int id, String name, Double lon, Double lat, Double height, String land, String town){
+    public Port() {
+    }
+
+    public Port(int id, String description, Double lon, Double lat, Double height, String country, String city){
         this.id = id;
-        this.name = name;
+        this.description = description;
         this.lon = lon;
         this.lat = lat;
         this.height = height;
-        this.land = land;
-        this.town = town;
+        this.country = country;
+        this.city = city;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String town) {
+        this.city = town;
     }
 }
