@@ -7,8 +7,9 @@ GET     /                           controllers.PortController.layout
 
 # lb: Home page
 GET     /                           controllers.PortController.index()
-POST    /port                     controllers.PortController.addPort()
-GET     /ports                    controllers.PortController.getPorts()
+POST    /port                       controllers.PortController.addPort()
+GET     /ports                      controllers.PortController.getPorts()
+GET     /pegel                      controllers.PortController.getPegel()
 
 
 

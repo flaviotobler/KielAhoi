@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -22,6 +23,12 @@ import play.libs.concurrent.HttpExecutionContext;
 import static play.libs.Json.toJson;
 
 
+// Um Pegel einzulesen:
+import java.io.IOException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 /**
  *
  *
@@ -30,10 +37,16 @@ import static play.libs.Json.toJson;
 @Singleton
 public class PortController extends Controller {
 
-
+    // fuer DB-Abfragen
     private final FormFactory formFactory;
     private final PortRepository portRepository;
     private final HttpExecutionContext ec;
+
+
+    private final List<Port> portsTest = new ArrayList<>();
+    private final Double heightkonstanz = 450.0;
+    private final Double pegelkonstanz = 4.5;
+    private double pegelRomanshorn;
 
     @Inject
     public PortController(FormFactory formFactory, PortRepository portRepository, HttpExecutionContext ec) {
@@ -59,11 +72,6 @@ public class PortController extends Controller {
 
 
 
-
-    //private final Form<WidgetData> form;
-    private final List<Port> portsTest = new ArrayList<>();
-    private final Double heightkonstanz = 450.0;
-    private final Double pegelkonstanz = 4.5;
 
 
     public Result index() {
@@ -92,6 +100,24 @@ public class PortController extends Controller {
     public Result layout() {
         return ok(views.html.layout.render());
     }
+
+    // Pegel Romanshorn von Mess-Station laden
+    public Result getPegel() {
+        try {
+            Document doc = Jsoup.connect("https://www.hydrodaten.admin.ch/de/tabelle-der-aktuellen-situation-der-abflusse-und-wasserstande.html").get();
+            Elements values = doc.select("tr[data-station-id=2032] td:nth-of-type(4)");
+            pegelRomanshorn = Double.parseDouble(values.text());
+            System.out.println(pegelRomanshorn);
+            /*for (Element elem : values) {
+                System.out.println(elem.text());
+            }*/
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ok(views.html.index.render());
+        //return pegelRomanshorn;
+    }
+
 
 
 }

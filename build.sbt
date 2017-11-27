@@ -22,3 +22,6 @@ libraryDependencies += "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Fina
 
 // PlayKeys.externalizeResources := false // beim Deployen aktivieren
 
+// Pegel auslesen
+// https://mvnrepository.com/artifact/org.jsoup/jsoup
+libraryDependencies += "org.jsoup" % "jsoup" % "1.7.2"
