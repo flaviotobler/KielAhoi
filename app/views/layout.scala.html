@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="@routes.Assets.at("lib/leaflet/leaflet.css")">
     <link rel="stylesheet" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.css")">
     <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bodenseetiefgang.css")">
+    <script src="https://unpkg.com/leaflet@@1.2.0/dist/leaflet.js"></script>
+
 
   </head>
-  <!--<body onload="loadSiteMap()">-->
   <body>
     <div id=page>
 
@@ -36,7 +37,7 @@
       </nav>
 
 
-            <!-- Titel-Leiste -->
+      <!-- Titel-Leiste -->
       <div id="firstline">
         <div id=titelbox>
           <div id=titel>
@@ -61,15 +62,28 @@
 
       <!-- Inhalt -->
       <div id="content" class="container">
-          <div id="mapid"></div>
           @content
+          <div id="mapbox"></div>
+
       </div>
 
     </div>
 
+
+    <script>
+            var mymap = L.map('mapbox').setView([47.607, 9.441], 10);
+
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox.streets',
+                accessToken: 'pk.eyJ1IjoiZmxhdmlvdG9ibGVyIiwiYSI6ImNqOHBzdHMyaTBha3kzM3FvaGZ5NDZkNjUifQ.PR0rTpHVq86DojYZur9z0g'
+            }).addTo(mymap);
+    </script>
+
     <script src="@routes.Assets.at("lib/jquery/jquery.js")"></script>
-    <script src="@routes.Assets.at("lib/popper.js/dist/popper.js")"></script>
     <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.js")"></script>
+    <!-- Import leaflet.js funktioniert nicht -->
     <script src="@routes.Assets.at("lib/leaflet/leaflet.js")"></script>
     <script src="@routes.Assets.at("javascripts/bodenseeMap.js")"></script>
     <script src="@routes.Assets.at("javascripts/bodenseeListe.js")"></script>
