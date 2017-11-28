@@ -31,8 +31,8 @@ public class JPAPortRepository implements PortRepository {
     }
 
     @Override
-    public CompletionStage<Stream<Port>> list() {
-        return supplyAsync(() -> wrap(em -> list(em)), executionContext);
+    public CompletionStage<List<Port>> list() {
+        return supplyAsync(() -> wrap(em -> list(em)));
     }
 
     private <T> T wrap(Function<EntityManager, T> function) {
@@ -44,9 +44,9 @@ public class JPAPortRepository implements PortRepository {
         return port;
     }
 
-    private Stream<Port> list(EntityManager em) {
+    private List<Port> list(EntityManager em) {
         List<Port> ports = em.createQuery("select p from Port p", Port.class).getResultList();
 
-        return ports.stream();
+        return ports;
     }
 }

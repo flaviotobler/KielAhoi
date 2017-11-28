@@ -1,4 +1,5 @@
 
+@(content: Html)
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,8 +10,11 @@
     <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bodenseetiefgang.css")">
 
   </head>
-  <body onload="loadSiteMap()">
+  <!--<body onload="loadSiteMap()">-->
+  <body>
     <div id=page>
+
+      <!-- NAV-Bar -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +34,9 @@
           </ul>
         </div>
       </nav>
+
+
+            <!-- Titel-Leiste -->
       <div id="firstline">
         <div id=titelbox>
           <div id=titel>
@@ -47,9 +54,15 @@
           <input type="number" step="any" class="form-control" id="tiefgangInput" placeholder="2.5m">
           <button type="submit" class="btn btn-primary" id="tiefgangEingabe">Bestätigen</button>
         </form>
-      </div>
-      <div id="content" class="container">
 
+
+      </div>
+
+
+      <!-- Inhalt -->
+      <div id="content" class="container">
+          <div id="mapid"></div>
+          @content
       </div>
 
     </div>

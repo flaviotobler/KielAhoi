@@ -1,14 +1,31 @@
 @(ports: List[Port])
+  @layout {
+    <h3>Liste der Häfen</h3>
 
-<h1>Ports</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Bezeichnung</th>
+          <th scope="col">lon</th>
+          <th scope="col">lat</th>
+          <th scope="col">MüM</th>
+          <th scope="col">Land</th>
+          <th scope="col">Ortschaft</th>
+      </thead>
+      <tbody>
+      @for(p <- ports) {
+        <tr id=@p.getId()>
+          <td>@p.getId()</td>
+          <td>@p.getDescription()</td>
+          <td>@p.getLon()</td>
+          <td>@p.getLat()</td>
+          <td>@p.getHeight()</td>
+          <td>@p.getCountry()</td>
+          <td>@p.getCity()</td>
+        </tr>
+      }
+      </tbody>
+    </table>
 
-<table>
-  <thead>
-    <tr><th>id</th><th>Bezeichnung</th><th>lon</th><th>lat</th><th>MüM</th><th>Land</th><th>Ortschaft</th>
-  </thead>
-  <tbody>
-    @for(p <- ports) {
-      <tr id="@p.getId()"><td>@p.getId()</td><td>@p.getDescription()</td><td>@p.getLon()</td><td>@p.getLat()</td><td>@p.getHeight()</td><td>@p.getCountry()</td><td>@p.getCity()</td></tr>
-    }
-  </tbody>
-</table>
+  }

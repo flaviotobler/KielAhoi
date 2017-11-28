@@ -56,12 +56,17 @@ public class PortController extends Controller {
     }
 
 
+    // DB abfragen und alle Häfen als Liste anzeigen
     public CompletionStage<Result> getPorts() {
-        return portRepository.list().thenApplyAsync(
-                portStream -> ok(views.html.list.render(portStream.collect(Collectors.toList()))
-                //portStream -> ok(toJson(portStream.collect(Collectors.toList()))
-                ), ec.current());
+        return portRepository.list().thenApplyAsync(ports -> {
+            for (Port port : ports) {
+            System.out.println(port.getDescription());
+            }
+            return ok(views.html.list.render(ports));
+        });
     }
+
+
 
     public CompletionStage<Result> addPort() {
         Port port = formFactory.form(Port.class).bindFromRequest().get();
@@ -69,6 +74,7 @@ public class PortController extends Controller {
                 p -> redirect(routes.PortController.index()
                 ), ec.current());
     }
+
 
 
 
@@ -97,9 +103,9 @@ public class PortController extends Controller {
     }
 
 
-    public Result layout() {
+/*    public Result layout() {
         return ok(views.html.layout.render());
-    }
+    }*/
 
     // Pegel Romanshorn von Mess-Station laden
     public Result getPegel() {

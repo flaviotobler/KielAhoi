@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.PortController.layout
+#GET     /                           controllers.PortController.layout
 
 # lb: Home page
 GET     /                           controllers.PortController.index()
@@ -21,7 +21,7 @@ GET     /portmap                    controllers.PortController.map
 
 
 GET     /add                        controllers.PortController.add
-GET     /layout                     controllers.PortController.layout
+#GET     /layout                     controllers.PortController.layout
 
 
 
