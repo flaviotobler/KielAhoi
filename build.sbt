@@ -25,3 +25,6 @@ libraryDependencies += "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Fina
 // Pegel auslesen
 // https://mvnrepository.com/artifact/org.jsoup/jsoup
 libraryDependencies += "org.jsoup" % "jsoup" % "1.7.2"
+
+// Tiefgang einlesen
+libraryDependencies += javaForms

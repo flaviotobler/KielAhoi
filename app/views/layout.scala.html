@@ -47,10 +47,11 @@
             <h2>Pegel Konstanz: @pegel</h2>
           </div>
         </div>
-        <form onsubmit="event.preventDefault(), tiefgangControll()">
+        <!--<form onsubmit="event.preventDefault(), tiefgangControll()">-->
+          <form action="@routes.PortController.readTiefgang()" method="post">
           <lable for="tiefgangInput">Tiefgang:</lable>
-          <input type="number" step="any" class="form-control" id="tiefgangInput" placeholder="2.5m">
-          <button type="submit" class="btn btn-primary" id="tiefgangEingabe">Bestätigen</button>
+          <input type="number" step="any" class="form-control" id="tiefgang" placeholder="2.5m">
+          <button type="submit" class="btn btn-primary" id="tiefgang">Bestätigen</button>
         </form>
 
 
