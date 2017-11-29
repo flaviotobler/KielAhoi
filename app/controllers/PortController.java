@@ -57,40 +57,37 @@ public class PortController extends Controller {
 
 
     // DB abfragen und alle Häfen als Liste anzeigen
-    public CompletionStage<Result> getPorts() {
+    public CompletionStage<Result> getList() {
         return portRepository.list().thenApplyAsync(ports -> {
-            for (Port port : ports) {
+/*            for (Port port : ports) {
             System.out.println(port.getDescription());
-            }
-            return ok(views.html.list.render(ports));
+            }*/
+            return ok(views.html.list.render(ports, getPegel()));
+        });
+    }
+
+
+    public CompletionStage<Result> getMap() {
+        return portRepository.list().thenApplyAsync(ports -> {
+/*            for (Port port : ports) {
+            System.out.println(port.getDescription());
+            }*/
+            return ok(views.html.map.render(ports, getPegel()));
         });
     }
 
 
 
-    public CompletionStage<Result> addPort() {
+/*    public CompletionStage<Result> addPort() {
         Port port = formFactory.form(Port.class).bindFromRequest().get();
         return portRepository.add(port).thenApplyAsync(
                 p -> redirect(routes.PortController.index()
                 ), ec.current());
-    }
+    }*/
 
 
 
 
-
-
-    public Result index() {
-        return ok(views.html.index.render());
-    }
-
-    public Result list() {
-        return ok(views.html.list.render(portsTest));
-    }
-
-    public Result map() { return ok(views.html.map.render(portsTest));}
-
-    public Result ports(){ return ok(Json.toJson(portsTest));}
 
 
 
@@ -103,12 +100,8 @@ public class PortController extends Controller {
     }
 
 
-/*    public Result layout() {
-        return ok(views.html.layout.render());
-    }*/
-
     // Pegel Romanshorn von Mess-Station laden
-    public Result getPegel() {
+    public Double getPegel() {
         try {
             Document doc = Jsoup.connect("https://www.hydrodaten.admin.ch/de/tabelle-der-aktuellen-situation-der-abflusse-und-wasserstande.html").get();
             Elements values = doc.select("tr[data-station-id=2032] td:nth-of-type(4)");
@@ -120,8 +113,7 @@ public class PortController extends Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return ok(views.html.index.render());
-        //return pegelRomanshorn;
+        return pegelRomanshorn;
     }
 
 

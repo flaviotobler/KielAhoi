@@ -6,21 +6,23 @@
 #GET     /                           controllers.PortController.layout
 
 # lb: Home page
-GET     /                           controllers.PortController.index()
-POST    /port                       controllers.PortController.addPort()
-GET     /ports                      controllers.PortController.getPorts()
-GET     /pegel                      controllers.PortController.getPegel()
+#GET     /                           controllers.PortController.index()
+#POST    /port                       controllers.PortController.addPort()
+#GET     /ports                      controllers.PortController.getPorts()
+#GET     /pegel                      controllers.PortController.getPegel()
 
 
 
 
 # Ports
-GET     /portlist                   controllers.PortController.list()
-GET     /portmap                    controllers.PortController.map
+GET     /                           controllers.PortController.getMap()
+GET     /list                       controllers.PortController.getList()
+GET     /map                        controllers.PortController.getMap()
+
+
+
 #GET     /ports                      controllers.PortController.ports
-
-
-GET     /add                        controllers.PortController.add
+#GET     /add                        controllers.PortController.add
 #GET     /layout                     controllers.PortController.layout
 
 

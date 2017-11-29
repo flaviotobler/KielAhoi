@@ -1,5 +1,5 @@
-@(ports: List[Port])
-  @layout {
+@(ports: List[Port], pegel: Double)
+  @layout(pegel = pegel){
     <h3>Liste der Häfen</h3>
 
     <table class="table">
@@ -12,6 +12,7 @@
           <th scope="col">MüM</th>
           <th scope="col">Land</th>
           <th scope="col">Ortschaft</th>
+          <th scope="col">Wassertiefe</th>
       </thead>
       <tbody>
       @for(p <- ports) {
@@ -23,6 +24,7 @@
           <td>@p.getHeight()</td>
           <td>@p.getCountry()</td>
           <td>@p.getCity()</td>
+          <td>@(f"${pegel-p.getHeight()}%.1f") Meter</td>
         </tr>
       }
       </tbody>
