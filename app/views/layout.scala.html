@@ -50,7 +50,7 @@
         <!--<form onsubmit="event.preventDefault(), tiefgangControll()">-->
           <form action="@routes.PortController.readTiefgang()" method="post">
           <lable for="tiefgangInput">Tiefgang:</lable>
-          <input type="number" step="any" class="form-control" id="tiefgang" placeholder="2.5m">
+          <input type="text" class="form-control" id="tiefgang" name="tiefgang" placeholder="2.5m">
           <button type="submit" class="btn btn-primary" id="tiefgang">Bestätigen</button>
         </form>
 

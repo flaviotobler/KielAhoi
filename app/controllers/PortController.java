@@ -38,14 +38,12 @@ public class PortController extends Controller {
     private final PortRepository portRepository;
     private final HttpExecutionContext ec;
 
-
-
-
-    //private static List<Port> portsTest = new ArrayList<>();
-//    private final Double heightkonstanz = 450.0;
-//    private final Double pegelkonstanz = 4.5;
     private static double pegelRomanshorn;
     private static double tiefgang;
+
+    //private static List<Port> portsTest = new ArrayList<>();
+
+
 
     @Inject
     public PortController(FormFactory formFactory, PortRepository portRepository, HttpExecutionContext ec) {
@@ -75,55 +73,13 @@ public class PortController extends Controller {
         });
     }
 
-
-
-    // *****************************************************************************************
-
-
-
-
-
+    // Tiefgang aus Webseite (POST) einlesen
     public Result readTiefgang() {
         DynamicForm requestData = formFactory.form().bindFromRequest();
-        String tiefgang = requestData.get("tiefgang");
-
-        System.out.println("Das wurde eingelesen: "+tiefgang);
-        //tiefgang = 2.5;
-        return ok("Hello " + tiefgang);
+        tiefgang = Double.parseDouble(requestData.get("tiefgang"));
+        System.out.println("Eingelesener Tiefgang: "+tiefgang);
+        return redirect(routes.PortController.getMap());
     }
-
-
-
-
-
-
-
-
-    // *****************************************************************************************
-
-
-
-/*    public CompletionStage<Result> addPort() {
-        Port port = formFactory.form(Port.class).bindFromRequest().get();
-        return portRepository.add(port).thenApplyAsync(
-                p -> redirect(routes.PortController.index()
-                ), ec.current());
-    }*/
-
-
-
-
-
-
-
-
-/*    public Result add() {
-        portsTest.add(new Port(1, "KreuzlingenYachthafen", 47.654409, 9.183276, pegelkonstanz + heightkonstanz - 450.0, "CH", "Kreuzlingen"));
-        portsTest.add(new Port(2, "Bregenz", 47.5024, 9.7362, pegelkonstanz + heightkonstanz - 453.0, "AU", "Bregenz"));
-        portsTest.add(new Port(3, "Romanshorn", 47.5667, 9.3833, pegelkonstanz + heightkonstanz - 447.0, "CH", "Romanshorn"));
-        return ok();
-    }*/
-
 
     // Pegel Romanshorn von Mess-Station laden
     public Double getPegel() {
@@ -142,5 +98,20 @@ public class PortController extends Controller {
     }
 
 
+/*    public CompletionStage<Result> addPort() {
+        Port port = formFactory.form(Port.class).bindFromRequest().get();
+        return portRepository.add(port).thenApplyAsync(
+                p -> redirect(routes.PortController.index()
+                ), ec.current());
+    }*/
+
+
+
+/*    public Result add() {
+        portsTest.add(new Port(1, "KreuzlingenYachthafen", 47.654409, 9.183276, pegelkonstanz + heightkonstanz - 450.0, "CH", "Kreuzlingen"));
+        portsTest.add(new Port(2, "Bregenz", 47.5024, 9.7362, pegelkonstanz + heightkonstanz - 453.0, "AU", "Bregenz"));
+        portsTest.add(new Port(3, "Romanshorn", 47.5667, 9.3833, pegelkonstanz + heightkonstanz - 447.0, "CH", "Romanshorn"));
+        return ok();
+    }*/
 
 }
