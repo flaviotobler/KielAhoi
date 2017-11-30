@@ -1,4 +1,4 @@
-name := """KielAhoi"""
+name := """kielahoi"""
 
 version := "2.6.x"
 
