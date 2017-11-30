@@ -39,7 +39,7 @@ public class PortController extends Controller {
     private final HttpExecutionContext ec;
 
     private static double pegelRomanshorn;
-    private static double tiefgang;
+    private static double tiefgang = 2.5;
 
     //private static List<Port> portsTest = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class PortController extends Controller {
 /*            for (Port port : ports) {
             System.out.println(port.getDescription());
             }*/
-            return ok(views.html.map.render(ports, getPegel()));
+            return ok(views.html.map.render(ports, getPegel(), tiefgang));
         });
     }
 
