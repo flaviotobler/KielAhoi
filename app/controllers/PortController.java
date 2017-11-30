@@ -13,7 +13,6 @@ import java.util.concurrent.CompletionStage;
 
 import play.mvc.Controller;
 import play.mvc.Result;
-
 import play.libs.concurrent.HttpExecutionContext;
 
 
@@ -22,7 +21,6 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import scala.Long;
 
 
 /**
@@ -30,6 +28,7 @@ import scala.Long;
  *
  *
  */
+
 @Singleton
 public class PortController extends Controller {
 
@@ -41,8 +40,6 @@ public class PortController extends Controller {
     private static double pegelRomanshorn;
     private static double tiefgang = 1.5; // default = 1.5m
     private static String ansicht = "map";
-
-    //private static List<Port> portsTest = new ArrayList<>();
 
 
 
@@ -57,9 +54,6 @@ public class PortController extends Controller {
     // DB abfragen und alle Häfen als Liste anzeigen
     public CompletionStage<Result> getList() {
         return portRepository.list().thenApplyAsync(ports -> {
-/*            for (Port port : ports) {
-            System.out.println(port.getDescription());
-            }*/
             ansicht = "list";
             return ok(views.html.list.render(ports, getPegel(), tiefgang, ansicht));
         });
@@ -68,9 +62,6 @@ public class PortController extends Controller {
 
     public CompletionStage<Result> getMap() {
         return portRepository.list().thenApplyAsync(ports -> {
-/*            for (Port port : ports) {
-            System.out.println(port.getDescription());
-            }*/
             ansicht = "map";
             return ok(views.html.map.render(ports, getPegel(), tiefgang, ansicht));
         });
@@ -82,7 +73,6 @@ public class PortController extends Controller {
         tiefgang = Double.parseDouble(requestData.get("tiefgang"));
         ansicht = requestData.get("ansicht");
         System.out.println("Eingelesener Tiefgang: "+tiefgang);
-        System.out.println("Ansicht: "+ansicht);
 
         switch (ansicht) {
             case "map":
@@ -112,8 +102,7 @@ public class PortController extends Controller {
         return portRepository.add(port).thenApplyAsync(
                 p -> redirect(routes.PortController.index()
                 ), ec.current());
-    }*/
-
-
+    }
+*/
 
 }

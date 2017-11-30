@@ -1,12 +1,6 @@
 package models;
 
-import play.db.jpa.JPA;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.function.Function;
-
-import com.sun.javafx.beans.IDProperty;
 
 
 /**

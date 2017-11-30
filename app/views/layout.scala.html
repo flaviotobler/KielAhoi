@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="@routes.Assets.at("lib/leaflet/leaflet.css")">
     <link rel="stylesheet" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.css")">
     <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bodenseetiefgang.css")">
-    <script src="https://unpkg.com/leaflet@@1.2.0/dist/leaflet.js"></script>
-
 
   </head>
   <body>
@@ -48,8 +46,8 @@
           </div>
         </div>
 
+        <!-- Formular für Tiefgang -->
           <form action="@routes.PortController.readTiefgang()" method="post">
-
           <div class="form-group row col-lg-6">
                   <input type="hidden" name="ansicht" value="@ansicht">
                   <lable for="tiefgang" class="col-sm-2 col-form-label">Tiefgang</lable>
@@ -60,15 +58,8 @@
                       </span>
                   </div>
           </div>
-
           </form>
       </div>
-
-
-
-
-
-
 
       <!-- Inhalt -->
       <div id="content" class="container">
@@ -78,15 +69,8 @@
     </div>
 
 
-
-
-    <script src="@routes.Assets.at("lib/jquery/jquery.js")"></script>
-    <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.js")"></script>
-    <!-- Import leaflet.js funktioniert nicht -->
-    <script src="@routes.Assets.at("lib/leaflet/leaflet.js")"></script>
-    <script src="@routes.Assets.at("javascripts/bodenseeMap.js")"></script>
-    <script src="@routes.Assets.at("javascripts/bodenseeListe.js")"></script>
-    <script src="@routes.Assets.at("javascripts/bodenseeLayout.js")"></script>
+      <script src="https://unpkg.com/leaflet@@1.2.0/dist/leaflet.js"></script>
+      <script src="@routes.Assets.at("js/map.js")"></script>
 
   </body>
 </html>

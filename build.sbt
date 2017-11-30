@@ -26,4 +26,4 @@ libraryDependencies += "org.jsoup" % "jsoup" % "1.7.2"
 libraryDependencies += javaForms
 
 
-PlayKeys.externalizeResources := false // beim Deployen aktivieren
+//PlayKeys.externalizeResources := false // beim Deployen aktivieren
