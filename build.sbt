@@ -14,17 +14,16 @@ libraryDependencies += "org.webjars" % "jquery" % "3.2.1"
 libraryDependencies += "org.webjars.npm" % "popper.js" % "1.12.5"
 libraryDependencies += "org.webjars.bower" % "leaflet" % "1.2.0"
 
-
-// lb: Datenbank
+// Datenbank
 libraryDependencies += javaJpa
 libraryDependencies += "org.postgresql" % "postgresql" % "9.4-1201-jdbc41"
 libraryDependencies += "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final"
 
-// PlayKeys.externalizeResources := false // beim Deployen aktivieren
-
 // Pegel auslesen
-// https://mvnrepository.com/artifact/org.jsoup/jsoup
 libraryDependencies += "org.jsoup" % "jsoup" % "1.7.2"
 
 // Tiefgang einlesen
 libraryDependencies += javaForms
+
+
+PlayKeys.externalizeResources := false // beim Deployen aktivieren
