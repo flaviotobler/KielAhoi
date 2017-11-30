@@ -1,9 +1,9 @@
 
-@(pegel: Double)(content: Html)
+@(pegel: Double, tiefgang: Double, ansicht: String)(content: Html)
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BodenseeTiefgang</title>
+    <title>KielAhoi</title>
 
     <link rel="stylesheet" href="@routes.Assets.at("lib/leaflet/leaflet.css")">
     <link rel="stylesheet" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.css")">
@@ -41,28 +41,38 @@
       <div id="firstline">
         <div id=titelbox>
           <div id=titel>
-            <h1>Bodensee-Befahrbarkeit</h1>
+            <h1>KielAhoi</h1>
           </div>
           <div id=subtitle>
-            <h2>Pegel Konstanz: @pegel</h2>
+            <p>Pegel Romanshorn: @pegel</p>
           </div>
         </div>
-        <!--<form onsubmit="event.preventDefault(), tiefgangControll()">-->
+
           <form action="@routes.PortController.readTiefgang()" method="post">
-          <lable for="tiefgangInput">Tiefgang:</lable>
-          <input type="text" class="form-control" id="tiefgang" name="tiefgang" placeholder="2.5m">
-          <button type="submit" class="btn btn-primary" id="tiefgang">Bestätigen</button>
-        </form>
 
+          <div class="form-group row col-lg-6">
+                  <input type="hidden" name="ansicht" value="@ansicht">
+                  <lable for="tiefgang" class="col-sm-2 col-form-label">Tiefgang</lable>
+                  <div class="input-group">
+                      <input type="text" class="form-control" id="tiefgang" name="tiefgang" value="@tiefgang" placeholder="default: 1.5">
+                      <span class="input-group-btn">
+                          <button class="btn btn-secondary" type="submit">Go!</button>
+                      </span>
+                  </div>
+          </div>
 
+          </form>
       </div>
+
+
+
+
+
 
 
       <!-- Inhalt -->
       <div id="content" class="container">
           @content
-
-
       </div>
 
     </div>

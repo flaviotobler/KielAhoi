@@ -39,7 +39,8 @@ public class PortController extends Controller {
     private final HttpExecutionContext ec;
 
     private static double pegelRomanshorn;
-    private static double tiefgang = 2.5;
+    private static double tiefgang = 1.5; // default = 1.5m
+    private static String ansicht = "map";
 
     //private static List<Port> portsTest = new ArrayList<>();
 
@@ -59,7 +60,8 @@ public class PortController extends Controller {
 /*            for (Port port : ports) {
             System.out.println(port.getDescription());
             }*/
-            return ok(views.html.list.render(ports, getPegel()));
+            ansicht = "list";
+            return ok(views.html.list.render(ports, getPegel(), tiefgang, ansicht));
         });
     }
 
@@ -69,7 +71,8 @@ public class PortController extends Controller {
 /*            for (Port port : ports) {
             System.out.println(port.getDescription());
             }*/
-            return ok(views.html.map.render(ports, getPegel(), tiefgang));
+            ansicht = "map";
+            return ok(views.html.map.render(ports, getPegel(), tiefgang, ansicht));
         });
     }
 
@@ -77,8 +80,18 @@ public class PortController extends Controller {
     public Result readTiefgang() {
         DynamicForm requestData = formFactory.form().bindFromRequest();
         tiefgang = Double.parseDouble(requestData.get("tiefgang"));
+        ansicht = requestData.get("ansicht");
         System.out.println("Eingelesener Tiefgang: "+tiefgang);
-        return redirect(routes.PortController.getMap());
+        System.out.println("Ansicht: "+ansicht);
+
+        switch (ansicht) {
+            case "map":
+                return redirect(routes.PortController.getMap());
+            case "list":
+                return redirect(routes.PortController.getList());
+            default:
+                return redirect(routes.PortController.getMap());
+        }
     }
 
     // Pegel Romanshorn von Mess-Station laden
@@ -87,10 +100,6 @@ public class PortController extends Controller {
             Document doc = Jsoup.connect("https://www.hydrodaten.admin.ch/de/tabelle-der-aktuellen-situation-der-abflusse-und-wasserstande.html").get();
             Elements values = doc.select("tr[data-station-id=2032] td:nth-of-type(4)");
             pegelRomanshorn = Double.parseDouble(values.text());
-            //System.out.println(pegelRomanshorn);
-            /*for (Element elem : values) {
-                System.out.println(elem.text());
-            }*/
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,12 +115,5 @@ public class PortController extends Controller {
     }*/
 
 
-
-/*    public Result add() {
-        portsTest.add(new Port(1, "KreuzlingenYachthafen", 47.654409, 9.183276, pegelkonstanz + heightkonstanz - 450.0, "CH", "Kreuzlingen"));
-        portsTest.add(new Port(2, "Bregenz", 47.5024, 9.7362, pegelkonstanz + heightkonstanz - 453.0, "AU", "Bregenz"));
-        portsTest.add(new Port(3, "Romanshorn", 47.5667, 9.3833, pegelkonstanz + heightkonstanz - 447.0, "CH", "Romanshorn"));
-        return ok();
-    }*/
 
 }
