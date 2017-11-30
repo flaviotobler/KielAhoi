@@ -1,7 +1,7 @@
 package models;
 
-import javax.persistence.*;
 
+import javax.persistence.*;
 
 /**
  * Presentation object used for displaying data in a template.
