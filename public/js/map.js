@@ -1,4 +1,3 @@
-
 var map = L.map('mapbox').setView([47.607, 9.441], 10);
 
 // Karten-Layer

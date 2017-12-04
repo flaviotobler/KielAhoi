@@ -1,7 +1,9 @@
 @(ports: List[Port], pegel: Double, tiefgang: Double, ansicht: String)
     @layout(pegel  = pegel, tiefgang = tiefgang, ansicht = ansicht){
         <h3>Karte der Häfen</h3>
-        <div id="mapbox"></div>
+        <div id="mapbox" class="jumbotron">
+
+        </div>
 
     <script>
             var geojsonFeature = [
@@ -22,8 +24,5 @@
 
     </script>
 
-
-
-
-
     }
+

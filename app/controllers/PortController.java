@@ -59,7 +59,7 @@ public class PortController extends Controller {
         });
     }
 
-
+    // Kartendarstellung anzeigen
     public CompletionStage<Result> getMap() {
         return portRepository.list().thenApplyAsync(ports -> {
             ansicht = "map";

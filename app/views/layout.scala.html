@@ -1,74 +1,78 @@
-
 @(pegel: Double, tiefgang: Double, ansicht: String)(content: Html)
 <!DOCTYPE html>
-<html>
+<html lang="de">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bodensee-Wassertiefe-Rechner">
+    <meta name="author" content="NTB">
+
     <title>KielAhoi</title>
 
-    <link rel="stylesheet" href="@routes.Assets.at("lib/leaflet/leaflet.css")">
-    <link rel="stylesheet" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.css")">
-    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bodenseetiefgang.css")">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@@1.2.0/dist/leaflet.css"/>
+
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/kielahoi.css")">
+
 
   </head>
-  <body>
-    <div id=page>
 
+  <body>
       <!-- NAV-Bar -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/map">Karte<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/list">Liste</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Favoriten</a>
-            </li>
-          </ul>
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">KielAhoi</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li ><a href="/map">Karte</a></li>
+              <li><a href="/list">Liste</a></li>
+            </ul>
+              <!-- Formular für Tiefgang-->
+            <form class="navbar-form pull-right" action="@routes.PortController.readTiefgang()" method="post">
+              <input type="hidden" name="ansicht" value="@ansicht">
+              <div class="form-group" style="display:inline;">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="tiefgang" name="tiefgang" value="@tiefgang" placeholder="Tiefgang: 1.5">
+                  <span class="input-group-addon" type="submit"><span class="glyphicon glyphicon-refresh"></span></span>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </nav>
 
-
-      <!-- Titel-Leiste -->
-      <div id="firstline">
-        <div id=titelbox>
-          <div id=titel>
-            <h1>KielAhoi</h1>
-          </div>
-          <div id=subtitle>
-            <p>Pegel Romanshorn: @pegel</p>
-          </div>
-        </div>
-
-        <!-- Formular für Tiefgang -->
-          <form action="@routes.PortController.readTiefgang()" method="post">
-          <div class="form-group row col-lg-6">
-                  <input type="hidden" name="ansicht" value="@ansicht">
-                  <lable for="tiefgang" class="col-sm-2 col-form-label">Tiefgang</lable>
-                  <div class="input-group">
-                      <input type="text" class="form-control" id="tiefgang" name="tiefgang" value="@tiefgang" placeholder="default: 1.5">
-                      <span class="input-group-btn">
-                          <button class="btn btn-secondary" type="submit">Go!</button>
-                      </span>
-                  </div>
-          </div>
-          </form>
+    <!-- Inhalt -->
+    <div id="content" class="container">
+      @content
+      <div>
+        <h4>Genug Wasser unter dem Kiel?</h4>
+        <p>Diese App zeigt dir wo du, abhängig vom Tiefgang deines Schiffes und vom Pegel des Bodensees, gefahrlos einlaufen kannst.</p>
+        <h4>Pegel Romanshorn: @pegel m.ü.M.</h4>
       </div>
+    </div> <!-- /container -->
 
-      <!-- Inhalt -->
-      <div id="content" class="container">
-          @content
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">NTB - Webapplication - Projekt</span>
       </div>
+    </footer>
 
-    </div>
 
-
+    <!-- Javascript -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="https://unpkg.com/leaflet@@1.2.0/dist/leaflet.js"></script>
       <script src="@routes.Assets.at("js/map.js")"></script>
 
